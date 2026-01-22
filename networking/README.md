@@ -1,13 +1,22 @@
-# Networking Project
+## DNS & Connectivity Verification
 
-This project documents a hands-on networking exercise involving a cloud-hosted web server.
+After configuring DNS records, I verified name resolution and connectivity using standard networking tools.
 
-## Project Explanation
-In this project, I deployed a basic public web service to understand how networking, DNS, and cloud infrastructure work together in practice.
+- Used `ping` to confirm basic network reachability
+- Used `nslookup` and `dig` to verify that the domain resolved to the expected public IP address
 
-I provisioned a cloud virtual machine (EC2) and configured network access using security groups, allowing inbound HTTP and HTTPS traffic. I then installed and configured NGINX to serve a web page.
+These checks confirmed that DNS resolution was functioning correctly, but they also highlighted that successful name resolution alone does not guarantee service availability.
 
-Next, I configured DNS records to point a custom domain to the instance, enabling access via a human-readable domain name. Finally, I verified the full request flow by accessing the domain in a browser and confirming successful responses.
+---
 
-This project reinforced my understanding of how external traffic reaches cloud-hosted services through DNS, security controls, and application-level components.
+## Troubleshooting & Validation
+
+During setup, the domain resolved correctly but the web service was not initially accessible. This helped identify that the issue was not DNS-related, but related to network exposure.
+
+Further investigation confirmed that inbound access depended on the correct security group configuration and open ports. Once HTTP/HTTPS ports were explicitly allowed and the web server was verified as running and listening, the service became accessible via the public IP and domain.
+
+This reinforced the distinction between:
+- DNS resolution (domain → IP)
+- Network access control (security groups and ports)
+- Application availability (NGINX running and reachable)
 
